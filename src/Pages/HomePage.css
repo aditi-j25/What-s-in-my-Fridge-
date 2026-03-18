@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@600&family=Sour+Gummy:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap');
+
+
+/* ── COLOURS ── */
+:root {
+  --green:            #385241;
+  --green-mid:        #4e825c;
+  --green-pastel:     #a8c9a8;
+  --green-light:      #b5d1b5;
+  --green-very-light: #e2f0e2;
+  --white:            #ffffff;
+  --text:             #262e28;
+  --muted-green:      #85a48d;
+  --yellow-pastel:    #fde290;
+  --yellow-dark:      #c29130;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Sour Gummy', sans-serif;
+  background: var(--green-very-light);
+  color: var(--text);
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  background: var(--white);
+  border-bottom: 8px solid var(--green-pastel);
+  padding: 0 32px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo-text {
+  font-family: 'DynaPuff', sans-serif;
+  font-size: 45px;
+  font-weight: 900;
+  color: var(--green);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+.nav-profile {
+  background: var(--green-light);
+  border: 4px solid var(--green);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+  cursor: pointer;
+}
+
+/* ── HERO BANNER ── */
+.hero {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-mid) 100%);
+  margin: 28px 32px;
+  border-radius: 24px;
+  padding: 56px 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-heading {
+  font-family: 'Sour Gummy', serif;
+  font-size: 50px;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.hero-sub {
+  color: rgb(218, 218, 218);
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+.hero-btn {
+  background: var(--yellow-pastel);
+  color: var(--text);
+  border: 6px solid var(--yellow-dark);
+  border-radius: 50px;
+  padding: 14px 32px;
+  font-family: 'Sour Gummy', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  opacity: 0.9;
+}
+
+/* ── QUICK ACCESS CARDS ── */
+.quick-access {
+  padding: 0 32px;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-family: 'Sour Gummy', serif;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
+  justify-content: center;
+  gap: 20px;
+}
+
+.quick-card {
+  background: var(--white);
+  border: 6px solid var(--green-pastel);
+  border-radius: 20px;
+  padding: 28px 24px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.quick-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--green-mid);
+}
+
+.quick-card-icon {
+  font-size: 36px;
+  background: var(--green-light);
+  width: 60px;
+  height: 60px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.quick-card-title {
+  font-family: 'Sour Gummy', serif;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.quick-card-desc {
+  font-size: 14px;
+  color: var(--muted-green);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  max-width: 24ch;
+}
+
+.quick-card-arrow {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  margin-top: auto;
+}
