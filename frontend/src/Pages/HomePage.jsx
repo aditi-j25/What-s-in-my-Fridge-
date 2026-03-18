@@ -6,7 +6,7 @@ import { GiForkKnifeSpoon } from "react-icons/gi";
 import { PiChefHatFill } from "react-icons/pi";
 import "./HomePage.css";
 
-function HomePage({ user }) {
+function HomePage() {
   const navigate = useNavigate();
 
   const quickCards = [
