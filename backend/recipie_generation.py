@@ -1,10 +1,12 @@
 import os
+from dotenv import load_dotenv
 import json
 from pydantic import BaseModel
 from typing import List, Optional
 import google.generativeai as genai
 from prompts import RECIPE_PROMPT
 
+#---Pydantic Models---
 class RecipeRequest(BaseModel):
     ingredients : List[str]
 
@@ -25,8 +27,10 @@ class RecipeResponse(BaseModel):
     ingredients: List[Ingredient]
     steps: List[Step]
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
+#---LLM initialisation---
+load_dotenv()    
+API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 
