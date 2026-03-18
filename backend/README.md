@@ -79,7 +79,7 @@ uvicorn app.main:app --reload
   http://127.0.0.1:8000/docs
   ```
 
-FastAPI automatically generates API documentation here.
+Endpoints can be tested using the Interactive docs
 
 ---
 
