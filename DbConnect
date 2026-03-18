@@ -1,0 +1,184 @@
+#pip install supabase 
+  
+from supabase import create_client
+  
+url = "https://zrctmoysxnhzgyzbrvan.supabase.co"
+key = "sb_publishable_JYvRA3-zcpoWzqJmNXlkeQ_a02t_i8t"
+supabase = create_client(url, key)
+
+# ─── INSERT ───────────────────────────────────────────────
+def insert_user(username: str, password: str, email: str):
+    """Add a new user to User_Info."""
+    try:
+        response = supabase.table("User_Info").insert({
+            "Username": username,
+            "Password": password,
+            "Email":    email,
+        }).execute()
+        return response.data
+    except Exception as e:
+        print(f"Insert user error: {e}")
+        return None
+
+def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list):
+    """Add a new generated recipe linked to a user."""
+    try:
+        response = supabase.table("Generated_Recipes").insert({
+            "user_id":              user_id,
+            "recipe_name":         recipe_name,        # _text = array of text
+            "recipe_instructions": recipe_instructions, # _text = array of text
+        }).execute()
+        return response.data
+    except Exception as e:
+        print(f"Insert recipe error: {e}")
+        return None
+
+def insert_ingredients(user_id: int, recipe_id: int, ingredient_name: list):
+    """Add ingredients linked to a user and recipe."""
+    try:
+        response = supabase.table("Ingredients_List").insert({
+            "user_id":         user_id,
+            "recipe_id":       recipe_id,
+            "ingredient_name": ingredient_name,  # _text = array of text
+        }).execute()
+        return response.data
+    except Exception as e:
+        print(f"Insert ingredients error: {e}")
+        return None
+
+# ─── RETRIEVE ─────────────────────────────────────────────
+
+def get_user(user_id: int = None, username: str = None):
+    """Fetch a user by user_id or Username."""
+    try:
+        query = supabase.table("User_Info").select("*")
+        if user_id:
+            query = query.eq("user_id", user_id)
+        if username:
+            query = query.eq("Username", username)
+        return query.execute().data
+    except Exception as e:
+        print(f"Get user error: {e}")
+        return None
+
+def get_recipes(user_id: int = None, recipe_id: int = None):
+    """Fetch recipes, optionally filtered by user or recipe ID."""
+    try:
+        query = supabase.table("Generated_Recipes").select("*")
+        if user_id:
+            query = query.eq("user_id", user_id)
+        if recipe_id:
+            query = query.eq("recipe_id", recipe_id)
+        return query.execute().data
+    except Exception as e:
+        print(f"Get recipes error: {e}")
+        return None
+
+def get_ingredients(user_id: int = None, recipe_id: int = None):
+    """Fetch ingredients, optionally filtered by user or recipe."""
+    try:
+        query = supabase.table("Ingredients_List").select("*")
+        if user_id:
+            query = query.eq("user_id", user_id)
+        if recipe_id:
+            query = query.eq("recipe_id", recipe_id)
+        return query.execute().data
+    except Exception as e:
+        print(f"Get ingredients error: {e}")
+        return None
+
+# ─── EDIT ─────────────────────────────────────────────────
+def edit_user(user_id: int, updates: dict):
+    """
+    Update a user's info by user_id.
+    updates = {"Email": "new@email.com", "Password": "newpass"}
+    """
+    try:
+        response = (
+            supabase.table("User_Info")
+            .update(updates)
+            .eq("user_id", user_id)
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Edit user error: {e}")
+        return None
+
+def edit_recipe(recipe_id: int, updates: dict):
+    """
+    Update a recipe by recipe_id.
+    updates = {"recipe_name": [...], "recipe_instructions": [...]}
+    """
+    try:
+        response = (
+            supabase.table("Generated_Recipes")
+            .update(updates)
+            .eq("recipe_id", recipe_id)
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Edit recipe error: {e}")
+        return None
+
+def edit_ingredients(ingredients_id: int, updates: dict):
+    """
+    Update an ingredient row by ingredients_id.
+    updates = {"ingredient_name": [...]}
+    """
+    try:
+        response = (
+            supabase.table("Ingredients_List")
+            .update(updates)
+            .eq("ingredients_id", ingredients_id)
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Edit ingredients error: {e}")
+        return None
+
+# ─── SEARCH ───────────────────────────────────────────────
+def search_recipes_by_name(keyword: str):
+    """Search Generated_Recipes where recipe_name contains the keyword."""
+    try:
+        response = (
+            supabase.table("Generated_Recipes")
+            .select("*")
+            .ilike("recipe_name", f"%{keyword}%")
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Search recipe error: {e}")
+        return None
+
+def search_ingredients_by_name(keyword: str):
+    """Search Ingredients_List where ingredient_name contains the keyword."""
+    try:
+        response = (
+            supabase.table("Ingredients_List")
+            .select("*")
+            .ilike("ingredient_name", f"%{keyword}%")
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Search ingredient error: {e}")
+        return None
+
+def search_user_by_email(keyword: str):
+    """Search User_Info by partial email match."""
+    try:
+        response = (
+            supabase.table("User_Info")
+            .select("*")
+            .ilike("Email", f"%{keyword}%")
+            .execute()
+        )
+        return response.data
+    except Exception as e:
+        print(f"Search user error: {e}")
+        return None
+
