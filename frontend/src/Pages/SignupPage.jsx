@@ -6,6 +6,7 @@ import "./SignupPage.css";
 function SignupPage() {
     const navigate = useNavigate();
     
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState(""); // new state
@@ -19,10 +20,6 @@ function SignupPage() {
             setError("**Passwords do not match**");
             return;
         }
-
-        // temporary: just log values
-        console.log("Email:", email);
-        console.log("Password:", password);
 
         // later: connect to backend
         // for now, redirect
@@ -45,6 +42,14 @@ function SignupPage() {
             <div className="signup-content">
               <h1 className="signup-heading">Sign Up</h1>
               <form className="signup-form" onSubmit={handleSubmit}>
+                <label>Username</label>
+                <input
+                    type="text"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                />
                 <label>Email</label>
                 <input
                     type="email"
