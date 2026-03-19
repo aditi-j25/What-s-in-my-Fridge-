@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./LoginPage.css";
 
-function LoginPage() {
+function LoginPage({ setIsLoggedIn }) {
     const navigate = useNavigate();
     
     const [email, setEmail] = useState("");
@@ -14,9 +15,9 @@ function LoginPage() {
         // temporary: just log values
         console.log("Email:", email);
         console.log("Password:", password);
-
-        // later: connect to backend
-        // for now, redirect
+        setIsLoggedIn(true);
+        
+        // navigate("/dashboard"); // navigate to logged in dashboard
         navigate("/home");
     };
 
@@ -52,6 +53,9 @@ function LoginPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+                <label>Don't have an account? {"  "}
+                    <Link to="/signup" className="login-text">Sign up here</Link>
+                </label>
                 <button className="login-btn" type="submit">
                     Login
                 </button>
