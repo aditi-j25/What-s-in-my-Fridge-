@@ -9,10 +9,12 @@ function LoginPage({ setIsLoggedIn }) {
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        user_data = get_user(username)
+        setError("");
+        // user_data = get_user(username)
 
         // check if user and password match in backend
         // if (user_data) {
@@ -20,11 +22,13 @@ function LoginPage({ setIsLoggedIn }) {
         //     setIsLoggedIn(true);
         //     navigate("/dashboard")
         //   } else {
-        //     alert("Invalid login");
+        //     setError("**Invalid login**");
+        //     return;
         //   }
 
         //  } else {
-        //   alert("Invalid login");
+        // setError("**Invalid login**");
+        // return;
         //  }
         
         
@@ -64,6 +68,7 @@ function LoginPage({ setIsLoggedIn }) {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
+                <label>{error && <p className="error-text">{error}</p>}</label>
                 <label>Don't have an account? {"  "}
                     <Link to="/signup" className="login-text">Sign up here</Link>
                 </label>
