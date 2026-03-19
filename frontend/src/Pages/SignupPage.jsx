@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./SignupPage.css";
+// from DbConnect import insert_user;
 
 function SignupPage() {
     const navigate = useNavigate();
@@ -20,6 +21,9 @@ function SignupPage() {
             setError("**Passwords do not match**");
             return;
         }
+
+        // insert_user(username, password, email)
+        // navigate("/dashboard")
 
         // later: connect to backend
         // for now, redirect
