@@ -81,7 +81,7 @@ body {
 .signup-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
   width: 100%;
 }
 

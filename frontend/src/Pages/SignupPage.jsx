@@ -42,7 +42,6 @@ function SignupPage() {
             <div className="signup-content">
               <h1 className="signup-heading">Sign Up</h1>
               <form className="signup-form" onSubmit={handleSubmit}>
-                <label>Username</label>
                 <input
                     type="text"
                     placeholder="Enter your username"
@@ -50,7 +49,6 @@ function SignupPage() {
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-                <label>Email</label>
                 <input
                     type="email"
                     placeholder="Enter your email"
@@ -58,7 +56,6 @@ function SignupPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-                <label>Password</label>
                 <input
                     type="password"
                     placeholder="Enter your password"
@@ -66,7 +63,6 @@ function SignupPage() {
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <label>Confirm Password</label>
                 <input
                 type="password"
                 placeholder="Confirm your password"
