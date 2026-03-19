@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
+// from DBConnect get_user;
 
 function LoginPage({ setIsLoggedIn }) {
     const navigate = useNavigate();
@@ -11,8 +12,21 @@ function LoginPage({ setIsLoggedIn }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        user_data = get_user(username)
 
-        setIsLoggedIn(true);
+        // check if user and password match in backend
+        // if (user_data) {
+        //   if (password == user_data.password) {
+        //     setIsLoggedIn(true);
+        //     navigate("/dashboard")
+        //   } else {
+        //     alert("Invalid login");
+        //   }
+
+        //  } else {
+        //   alert("Invalid login");
+        //  }
+        
         
         // navigate("/dashboard"); // navigate to logged in dashboard
         navigate("/home");
