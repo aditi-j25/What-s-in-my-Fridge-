@@ -23,11 +23,10 @@ function SignupPage() {
         }
 
         // insert_user(username, password, email)
-        // navigate("/dashboard")
 
         // later: connect to backend
         // for now, redirect
-        navigate("/home");
+        navigate("/login");
     };
 
     return (
