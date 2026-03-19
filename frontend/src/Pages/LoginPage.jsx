@@ -6,15 +6,12 @@ import "./LoginPage.css";
 function LoginPage({ setIsLoggedIn }) {
     const navigate = useNavigate();
     
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // temporary: just log values
-        console.log("Email:", email);
-        console.log("Password:", password);
         setIsLoggedIn(true);
         
         // navigate("/dashboard"); // navigate to logged in dashboard
@@ -37,12 +34,12 @@ function LoginPage({ setIsLoggedIn }) {
             <div className="login-content">
               <h1 className="login-heading">Login</h1>
               <form className="login-form" onSubmit={handleSubmit}>
-                <label>Email</label>
+                <label>Username</label>
                 <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    placeholder="Enter your username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     required
                 />
                 <label>Password</label>
