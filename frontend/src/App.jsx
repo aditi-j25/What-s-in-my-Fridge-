@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
+import InputsPage from "./Pages/InputPage.jsx";
 import RecipePage from "./Pages/RecipePage";
 
 function App() {
@@ -7,8 +8,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<HomePage />} />
-        <Route path="/recipe" element={<RecipePage />} />
         <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/recipe" element={<RecipePage />} />
+        <Route path="InputPage" element={<InputsPage />} />
       </Routes>
     </BrowserRouter>
   );
