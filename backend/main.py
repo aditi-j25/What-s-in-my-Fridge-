@@ -7,14 +7,15 @@ from DbConnect import insert_user, get_user
 
 class UserRequest(BaseModel):
     username: str
-    email: str
     password: str
+    email: str
 
 app = FastAPI(title ="What's in my Fridge API")
 
 #CORS Implementation
 origins =[
     "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(

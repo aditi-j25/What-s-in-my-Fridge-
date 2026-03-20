@@ -61,7 +61,7 @@ GEMINI_API_KEY=your_api_key_here
 Start the server using:
 
 ```bash
-uvicorn app.main:app --reload
+uvicorn main:app --reload
 ```
 
 

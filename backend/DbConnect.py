@@ -3,7 +3,7 @@
 from supabase import create_client
 
 url = "https://zrctmoysxnhzgyzbrvan.supabase.co"
-key = "sb_publishable_JYvRA3-zcpoWzqJmNXlkeQ_a02t_i8t"
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpyY3Rtb3lzeG5oemd5emJydmFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MjgzMTEsImV4cCI6MjA4OTAwNDMxMX0.TSFF86hfFtVoW5RLzbk8oiCckLGVr9Tn5kVqG8eHZIs"
 supabase = create_client(url, key)
 
 # ─── INSERT ───────────────────────────────────────────────
