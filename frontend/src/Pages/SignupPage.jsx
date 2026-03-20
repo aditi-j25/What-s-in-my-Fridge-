@@ -13,7 +13,7 @@ function SignupPage() {
     const [confirmPassword, setConfirmPassword] = useState(""); // new state
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
@@ -21,13 +21,26 @@ function SignupPage() {
             setError("**Passwords do not match**");
             return;
         }
+        const res = await fetch("http://localhost:8000/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+            email,
+          }),
+        });
 
-        // insert_user(username, password, email)
+        const data = await res.json();
 
-        // later: connect to backend
-        // for now, redirect
-        navigate("/login");
-    };
+        if (data.error) {
+          alert(data.error);
+        } else {
+          navigate("/login");
+        }
+      };
 
     return (
         <div className="signuppage">
