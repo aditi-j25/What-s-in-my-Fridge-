@@ -8,6 +8,7 @@ app = FastAPI(title ="What's in my Fridge API")
 #CORS Implementation
 origins =[
     "http://localhost:3000",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
@@ -26,10 +27,11 @@ async def root():
 
 @app.post("/generate-recipe", response_model=RecipeResponse)
 def create_recipe(request: RecipeRequest):
-
-    recipe = generate_recipe(request.ingredients)
-
-    return recipe
+    try:
+        return generate_recipe(request.ingredients)
+    except Exception as e:
+        print("ERROR:", e)
+        return {"error": str(e)}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)
