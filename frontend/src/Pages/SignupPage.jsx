@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { PiChefHatFill } from "react-icons/pi";
 import "./SignupPage.css";
 // from DbConnect import insert_user;
 
 function SignupPage() {
     const navigate = useNavigate();
+    const location = useLocation();
     
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -50,6 +52,17 @@ function SignupPage() {
             <div className="navbar-logo">
     
               <span className="logo-text">WHAT'S IN MY FRIDGE?</span>
+            </div>
+            <div className="navbar-links">
+              <button
+                className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
+                onClick={() => navigate("/home")}
+              >
+                Home
+              </button>
+              <button className="nav-profile" onClick={() => navigate("/login")}>
+                <PiChefHatFill /> Login
+              </button>
             </div>
           </nav>
     

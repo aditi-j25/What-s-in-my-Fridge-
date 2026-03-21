@@ -1,10 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { PiChefHatFill } from "react-icons/pi";
 import "./LoginPage.css";
 
-function LoginPage({ setIsLoggedIn }) {
+function LoginPage({ onLogin }) {
     const navigate = useNavigate();
+    const location = useLocation();
     
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -29,6 +31,7 @@ function LoginPage({ setIsLoggedIn }) {
         if (data.error) {
           alert(data.error);
         } else {
+          onLogin();
           navigate("/home");
         }
     };
@@ -41,6 +44,17 @@ function LoginPage({ setIsLoggedIn }) {
             <div className="navbar-logo">
     
               <span className="logo-text">WHAT'S IN MY FRIDGE?</span>
+            </div>
+            <div className="navbar-links">
+              <button
+                className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
+                onClick={() => navigate("/home")}
+              >
+                Home
+              </button>
+              <button className="nav-profile" onClick={() => navigate("/login")}>
+                <PiChefHatFill /> Login
+              </button>
             </div>
           </nav>
     
