@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
-// from DBConnect get_user;
 
 function LoginPage({ setIsLoggedIn }) {
     const navigate = useNavigate();
@@ -11,29 +10,27 @@ function LoginPage({ setIsLoggedIn }) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
-        // user_data = get_user(username)
+        const res = await fetch("http://localhost:8000/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        });
 
-        // check if user and password match in backend
-        // if (user_data) {
-        //   if (password == user_data.password) {
-        //     setIsLoggedIn(true);
-        //     navigate("/dashboard")
-        //   } else {
-        //     setError("**Invalid login**");
-        //     return;
-        //   }
+        const data = await res.json();
 
-        //  } else {
-        // setError("**Invalid login**");
-        // return;
-        //  }
-        
-        
-        // navigate("/dashboard"); // navigate to logged in dashboard
-        navigate("/home");
+        if (data.error) {
+          alert(data.error);
+        } else {
+          navigate("/home");
+        }
     };
 
     return (
