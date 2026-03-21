@@ -87,25 +87,25 @@ body {
 }
 
 /* ── INPUT OPTIONS ── */
-.quick-access {
+.input-section {
   padding: 0 32px;
   margin-bottom: 32px;
 }
 
-.quick-access h1 {
+.input-section h1 {
   margin-bottom: 2rem;
   margin-top: 2rem;
   text-align: center;
 }
 
-.cards-grid {
+.input-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 360px));
   justify-content: center;
   gap: 20px;
 }
 
-.quick-card {
+.input-card {
   background: var(--white);
   border: 6px solid var(--green-pastel);
   border-radius: 20px;
@@ -118,12 +118,12 @@ body {
   transition: transform 0.2s, border-color 0.2s;
 }
 
-.quick-card:hover {
+.input-card:hover {
   transform: translateY(-10px);
   border-color: var(--green-mid);
 }
 
-.quick-card-icon {
+.input-card-icon {
   font-size: 36px;
   background: var(--green-light);
   width: 60px;
@@ -135,7 +135,7 @@ body {
   flex-shrink: 0;
 }
 
-.quick-card h2 {
+.input-card h2 {
   margin-left: 2rem;
   margin-top: 1rem;
   text-align: center;

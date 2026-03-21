@@ -61,19 +61,19 @@ function InputPage() {
         <section className="input-section">
           <h1>Add Ingredients</h1>
 
-          <div className="cards-grid">
+          <div className="input-cards-grid">
             <div className="input-card">
-              <PiCamera className="input-icon" />
+              <PiCamera className="input-card-icon" />
               <h2>Camera</h2>
             </div>
 
             <div className="input-card">
-              <PiBarcode className="input-icon" />
+              <PiBarcode className="input-card-icon" />
               <h2>Barcode</h2>
             </div>
 
             <div onClick={() => setMode("text")} className="input-card">
-              <PiTextAa className="input-icon" />
+              <PiTextAa className="input-card-icon" />
               <h2>Text</h2>
             </div>
           </div>
