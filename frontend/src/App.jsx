@@ -5,6 +5,7 @@ import SignupPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import InputPage from "./Pages/InputPage";
 import RecipePage from "./Pages/RecipePage";
+import MyRecipesPage from "./Pages/MyRecipesPage";
 
 const AUTH_STORAGE_KEY = "wimf_is_logged_in";
 

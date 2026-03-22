@@ -1,15 +1,12 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useLocation, useNavigate } from "react-router-dom";
 import { GiShinyApple } from "react-icons/gi";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { PiChefHatFill } from "react-icons/pi";
 import "./HomePage.css";
 
 function HomePage({ isLoggedIn, onLogout }) {
-function HomePage({ isLoggedIn, onLogout }) {
   const navigate = useNavigate();
-  const location = useLocation();
   const location = useLocation();
 
   const quickCards = [
@@ -17,7 +14,6 @@ function HomePage({ isLoggedIn, onLogout }) {
       icon: <GiShinyApple />,
       title: "Add Ingredients",
       desc: "What's in your fridge? Add ingredients to get personalized recipe suggestions, and learn more about them.",
-      path: isLoggedIn ? "/input" : "/login",
       path: isLoggedIn ? "/input" : "/login",
       colorClass: "card-ingredients",
     },
@@ -79,11 +75,6 @@ function HomePage({ isLoggedIn, onLogout }) {
           <div className="hero-blob hero-blob-1" />
           <div className="hero-blob hero-blob-2" />
           <div className="hero-blob hero-blob-3" />
-      {!isLoggedIn && (
-        <section className="hero">
-          <div className="hero-blob hero-blob-1" />
-          <div className="hero-blob hero-blob-2" />
-          <div className="hero-blob hero-blob-3" />
 
           <div className="hero-content">
             <h1 className="hero-heading">
@@ -99,31 +90,13 @@ function HomePage({ isLoggedIn, onLogout }) {
               Login to Get Started
             </button>
           </div>
-          <div className="hero-content">
-            <h1 className="hero-heading">
-              What are we<br />cooking today?
-            </h1>
-            <p className="hero-sub">
-              What's In My Fridge is your personal cooking assistant that helps you make the most of the ingredients you have. Add your ingredients, get personalized recipe suggestions, and save your favorite recipes all in one place.
-            </p>
-            <button
-              className="hero-btn"
-              onClick={() => navigate("/login")}
-            >
-              Login to Get Started
-            </button>
-          </div>
 
-          <div className="hero-emoji"></div>
-        </section>
-      )}
           <div className="hero-emoji"></div>
         </section>
       )}
 
       {/* ── Quick Access Cards ── */}
       <section className="quick-access">
-        <h2 className="section-title">Start Here!</h2>
         <h2 className="section-title">Start Here!</h2>
         <div className="cards-grid">
           {quickCards.map((card) => (
@@ -135,9 +108,6 @@ function HomePage({ isLoggedIn, onLogout }) {
               <div className="quick-card-icon">{card.icon}</div>
               <h3 className="quick-card-title">{card.title}</h3>
               <p className="quick-card-desc">{card.desc}</p>
-              <span className="quick-card-arrow">
-                {isLoggedIn ? "Open Feature ->" : "Login Now ->"}
-              </span>
               <span className="quick-card-arrow">
                 {isLoggedIn ? "Open Feature ->" : "Login Now ->"}
               </span>
