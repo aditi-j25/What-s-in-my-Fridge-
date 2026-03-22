@@ -23,7 +23,7 @@ def insert_user(username: str, password: str, email: str):
         print(f"Insert user error: {e}")
         return None
 
-def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list):
+def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, prep_time: int, cook_time: int, servings: int):
     """Add a new generated recipe linked to a user."""
     try:
       if search_recipes_by_name(recipe_name):
@@ -33,6 +33,9 @@ def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list):
             "user_id":              user_id,
             "recipe_name":         recipe_name,        # _text = array of text
             "recipe_instructions": recipe_instructions, # _text = array of text
+            "prep_time" : prep_time, # integer
+            "cook_time" : cook_time, # integer
+            "servings" : servings # integer
         }).execute()
         return response.data
     except Exception as e:
@@ -48,7 +51,7 @@ def insert_ingredients(user_id: int, recipe_id: int, ingredient_name: list):
         response = supabase.table("Ingredients_List").insert({
             "user_id":         user_id,
             "recipe_id":       recipe_id,
-            "ingredient_name": ingredient_name,  # _text = array of text
+            "ingredient_name": ingredient_name , # _text = array of text   
         }).execute()
         return response.data
     except Exception as e:
