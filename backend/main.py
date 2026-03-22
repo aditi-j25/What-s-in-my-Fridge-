@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from recipie_generation import RecipeRequest,RecipeResponse,generate_recipe
-from DbConnect import insert_user, get_user
+from DbConnect import insert_user, get_user, get_recipes, get_ingredients
 from typing import Optional
 
 class UserRequest(BaseModel):
@@ -53,11 +53,22 @@ def login(user: UserRequest):
     try:
         user_data = get_user(username=user.username)[0]
         if user_data and user_data["Password"] == user.password:
-            return {"message": "Login successful"}
+            return {"message": "Login successful", "user_id": user_data["user_id"]}
         else:
             return {"error": "Invalid credentials"}
     except Exception as e:
         return {"error": "Invalid credentials"}
+
+@app.get("/myrecipes/{user_id}")
+def get_user_recipes(user_id: int):
+    try:
+        recipes = get_recipes(user_id=user_id)
+        for recipe in recipes:
+            ingredients = get_ingredients(user_id=user_id, recipe_id=recipe['recipe_id'])
+            recipe['ingredients'] = [ing['ingredient_name'] for ing in ingredients]  
+        return {"recipes": recipes}
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)

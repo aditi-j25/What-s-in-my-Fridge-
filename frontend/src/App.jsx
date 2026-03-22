@@ -5,6 +5,7 @@ import SignupPage from "./Pages/SignupPage";
 import LoginPage from "./Pages/LoginPage";
 import InputPage from "./Pages/InputPage";
 import RecipePage from "./Pages/RecipePage";
+import MyRecipesPage from "./Pages/MyRecipesPage";
 
 const AUTH_STORAGE_KEY = "wimf_is_logged_in";
 
@@ -29,6 +30,7 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem(AUTH_STORAGE_KEY);
+    localStorage.removeItem("user_id");
   };
 
   return (
@@ -64,6 +66,15 @@ function App() {
             <ProtectedRoute isLoggedIn={isLoggedIn}>
               <RecipePage onLogout={handleLogout} />
             </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/myrecipes"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MyRecipesPage onLogout={handleLogout} />
+            </ProtectedRoute>
+            
           }
         />
       </Routes>
