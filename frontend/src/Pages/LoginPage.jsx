@@ -32,7 +32,7 @@ function LoginPage({ onLogin }) {
           alert(data.error);
         } else {
           onLogin();
-          localStorage.setItem('user_id', data.user_id);
+          localStorage.setItem("user_id", data.user_id);
           navigate("/home");
         }
     };

@@ -29,6 +29,7 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem(AUTH_STORAGE_KEY);
+    localStorage.removeItem("user_id");
   };
 
   return (
