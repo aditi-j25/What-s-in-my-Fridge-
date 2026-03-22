@@ -66,6 +66,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/myrecipes"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MyRecipesPage onLogout={handleLogout} />
+            </ProtectedRoute>
+            
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

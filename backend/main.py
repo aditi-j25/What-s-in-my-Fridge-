@@ -59,13 +59,13 @@ def login(user: UserRequest):
     except Exception as e:
         return {"error": "Invalid credentials"}
 
-@app.get("/recipes/{user_id}")
+@app.get("/myrecipes/{user_id}")
 def get_user_recipes(user_id: int):
     try:
         recipes = get_recipes(user_id=user_id)
         for recipe in recipes:
             ingredients = get_ingredients(user_id=user_id, recipe_id=recipe['recipe_id'])
-            recipe['ingredients'] = [ing['ingredient_name'] for ing in ingredients]  # assuming ingredients is list of dicts
+            recipe['ingredients'] = [ing['ingredient_name'] for ing in ingredients]  
         return {"recipes": recipes}
     except Exception as e:
         return {"error": str(e)}

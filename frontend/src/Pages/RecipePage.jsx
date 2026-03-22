@@ -34,8 +34,8 @@ export default function RecipePage({ onLogout }) {
                   Add Ingredients
                 </button>
                 <button
-                  className={`nav-link ${location.pathname === "/recipe" ? "active" : ""}`}
-                  onClick={() => navigate("/recipe")}
+                  className={`nav-link ${location.pathname === "/myrecipes" ? "active" : ""}`}
+                  onClick={() => navigate("/myrecipes")}
                 >
                   My Recipes
                 </button>
