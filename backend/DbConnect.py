@@ -23,7 +23,7 @@ def insert_user(username: str, password: str, email: str):
         print(f"Insert user error: {e}")
         return None
 
-def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, prep_time: int, cook_time: int, servings: int):
+def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, prep_time: str, cook_time: str, servings: str):
     """Add a new generated recipe linked to a user."""
     try:
       if search_recipes_by_name(recipe_name):
@@ -33,9 +33,9 @@ def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, pr
             "user_id":              user_id,
             "recipe_name":         recipe_name,        # _text = array of text
             "recipe_instructions": recipe_instructions, # _text = array of text
-            "prep_time" : prep_time, # integer
-            "cook_time" : cook_time, # integer
-            "servings" : servings # integer
+            "prep_time" : prep_time, # text
+            "cook_time" : cook_time, # text
+            "servings" : servings # text
         }).execute()
         return response.data
     except Exception as e:

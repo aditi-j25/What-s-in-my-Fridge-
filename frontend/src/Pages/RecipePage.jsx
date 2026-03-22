@@ -44,8 +44,11 @@ export default function RecipePage({ onLogout }) {
                 </button>
               </div>
             </nav>
-
+        
       <div className="recipe-container" style={{ padding: "2rem" }}>
+        <button onClick={() => navigate(-1)} className="back-btn">
+            ← Back
+        </button>
         <h1>{recipe.title}</h1>
 
         {/* Info Section */}
