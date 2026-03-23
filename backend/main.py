@@ -95,7 +95,7 @@ async def chat(request: dict):
         
         # If no .env file, use hardcoded key
         if not API_KEY:
-            API_KEY = "AIzaSyAPBTNDPkICWMI7vn4nTLdngtx71YFHo64"
+            raise ValueError("GEMINI_API_KEY not found in environment variables")
         
         # Configure 
         genai.configure(api_key=API_KEY)
@@ -131,7 +131,6 @@ Be concise and helpful. Keep responses under 150 words.
         import traceback
         traceback.print_exc()
         return {"response": "Sorry, I'm having trouble right now. Please try again."}
-
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)
