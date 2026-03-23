@@ -26,12 +26,12 @@ origins =[
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://whats-in-my-fridge-gamma.vercel.app",
+    "https://what-s-in-my-fridge-gop7.onrender.com",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*']
