@@ -74,35 +74,43 @@ export default function RecipePage({ onLogout }) {
 
   return (
     <div>
-      <nav className="navbar">
-        <div className="navbar-logo">
-          <span className="logo-text">WHAT'S IN MY FRIDGE?</span>
-        </div>
-        <div className="navbar-links">
-          <button
-            className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
-            onClick={() => navigate("/home")}
-          >
-            Home
-          </button>
-          <button
-            className={`nav-link ${location.pathname === "/input" ? "active" : ""}`}
-            onClick={() => navigate("/input")}
-          >
-            Add Ingredients
-          </button>
-          <button
-            className={`nav-link ${location.pathname === "/myrecipes" ? "active" : ""}`}
-            onClick={() => navigate("/myrecipes")}
-          >
-            My Recipes
-          </button>
-          <button className="nav-profile" onClick={onLogout}>
-            <PiChefHatFill /> Logout
-          </button>
-        </div>
-      </nav>
-
+      {/* ── Navbar ── */}
+            <nav className="navbar">
+              <div className="navbar-logo">
+      
+                <span className="logo-text">WHAT'S IN MY FRIDGE?</span>
+              </div>
+              <div className="navbar-links">
+                <button
+                  className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
+                  onClick={() => navigate("/home")}
+                >
+                  Home
+                </button>
+                <button
+                  className={`nav-link ${location.pathname === "/input" ? "active" : ""}`}
+                  onClick={() => navigate("/input")}
+                >
+                  Add Ingredients
+                </button>
+                <button
+                  className={`nav-link ${location.pathname === "/myrecipes" ? "active" : ""}`}
+                  onClick={() => navigate("/myrecipes")}
+                >
+                  My Recipes
+                </button>
+              <button
+                className={`nav-link ${location.pathname === "/mybot" ? "active" : ""}`}
+                onClick={() => navigate("/mybot")}
+              >
+                MySousChef
+              </button>
+                <button className="nav-profile" onClick={onLogout}>
+                  <PiChefHatFill /> Logout
+                </button>
+              </div>
+            </nav>
+        
       <div className="recipe-container" style={{ padding: "2rem" }}>
         <h1>{recipe.title}</h1>
 

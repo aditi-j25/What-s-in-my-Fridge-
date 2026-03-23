@@ -6,6 +6,7 @@ import LoginPage from "./Pages/LoginPage";
 import InputPage from "./Pages/InputPage";
 import RecipePage from "./Pages/RecipePage";
 import MyRecipesPage from "./Pages/MyRecipesPage";
+import MyBotPage from "./Pages/MyBotPage";
 
 const AUTH_STORAGE_KEY = "wimf_is_logged_in";
 
@@ -75,6 +76,14 @@ function App() {
               <MyRecipesPage onLogout={handleLogout} />
             </ProtectedRoute>
             
+          }
+        />
+        <Route
+          path="/mybot"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MyBotPage onLogout={handleLogout} />
+            </ProtectedRoute>
           }
         />
       </Routes>
