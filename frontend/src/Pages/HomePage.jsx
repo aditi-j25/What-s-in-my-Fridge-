@@ -81,30 +81,27 @@ function HomePage({ isLoggedIn, onLogout }) {
         </div>
       </nav>
 
-      {!isLoggedIn && (
-        <section className="hero">
-          <div className="hero-blob hero-blob-1" />
-          <div className="hero-blob hero-blob-2" />
-          <div className="hero-blob hero-blob-3" />
-
-          <div className="hero-content">
-            <h1 className="hero-heading">
-              What are we<br />cooking today?
-            </h1>
-            <p className="hero-sub">
-              What's In My Fridge is your personal cooking assistant that helps you make the most of the ingredients you have. Add your ingredients, get personalized recipe suggestions, and save your favorite recipes all in one place.
-            </p>
-            <button
-              className="hero-btn"
-              onClick={() => navigate("/login")}
-            >
-              Login to Get Started!
+      {/* ── Banner ── */}
+      <section className="hero">
+        <div className="hero-blob hero-blob-1" />
+        <div className="hero-blob hero-blob-2" />
+        <div className="hero-blob hero-blob-3" />
+        <div className="hero-content">
+          <h1 className="hero-heading">
+            {isLoggedIn ? "Welcome back!" : "What are we"}<br />
+            {!isLoggedIn && "cooking today?"}
+          </h1>
+          <p className="hero-sub">
+            What's In My Fridge is your personal cooking assistant that helps you make the most of the ingredients you have. Add your ingredients, get personalized recipe suggestions, and save your favorite recipes all in one place.
+          </p>
+          {!isLoggedIn && (
+            <button className="hero-btn" onClick={() => navigate("/login")}>
+              Signup or Signin to Get Started!
             </button>
-          </div>
-
-          <div className="hero-emoji"></div>
-        </section>
-      )}
+          )}
+        </div>
+        <div className="hero-emoji"></div>
+      </section>
 
       {/* ── Quick Access Cards ── */}
       <section className="quick-access">
