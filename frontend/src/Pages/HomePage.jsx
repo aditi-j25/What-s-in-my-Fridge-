@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { RiRobot2Fill } from "react-icons/ri";
 import { GiShinyApple } from "react-icons/gi";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { PiChefHatFill } from "react-icons/pi";
@@ -10,6 +11,13 @@ function HomePage({ isLoggedIn, onLogout }) {
   const location = useLocation();
 
   const quickCards = [
+    {
+      icon: <RiRobot2Fill />,
+      title: "MySousChef",
+      desc: "Ask your AI cooking assistant questions, get recipe ideas, and learn kitchen tips instantly.",
+      path: isLoggedIn ? "/mybot" : "/login",
+      colorClass: "card-bot",
+    },
     {
       icon: <GiShinyApple />,
       title: "Add Ingredients",
@@ -55,6 +63,9 @@ function HomePage({ isLoggedIn, onLogout }) {
                 onClick={() => navigate("/myrecipes")}
               >
                 My Recipes
+              </button>
+              <button className="nav-link" onClick={() => navigate("/mybot")}>
+                MySousChef
               </button>
               <button className="nav-profile" onClick={onLogout}>
                 <PiChefHatFill /> Logout
