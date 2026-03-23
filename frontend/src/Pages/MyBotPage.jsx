@@ -117,22 +117,40 @@ function MyBotPage({onLogout}) {
 
   return (
     <div className="mybot-page">
-      {/* Navbar */}
+      {/* ── Navbar ── */}
       <nav className="navbar">
         <div className="navbar-logo">
+
           <span className="logo-text">WHAT'S IN MY FRIDGE?</span>
         </div>
         <div className="navbar-links">
-          <button className="nav-link" onClick={() => navigate("/home")}>Home</button>
-          <button className="nav-link" onClick={() => navigate("/fridge")}>My Fridge</button>
-          <button className="nav-link" onClick={() => navigate("/recipes")}>My Recipes</button>
-          <button className="nav-link active">MySousChef</button>
-          <>
-            <button className="nav-profile" onClick={onLogout}>
+          <button
+            className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
+            onClick={() => navigate("/home")}
+          >
+            Home
+          </button>
+              <button
+                className={`nav-link ${location.pathname === "/input" ? "active" : ""}`}
+                onClick={() => navigate("/input")}
+              >
+                Add Ingredients
+              </button>
+              <button
+                className={`nav-link ${location.pathname === "/myrecipes" ? "active" : ""}`}
+                onClick={() => navigate("/myrecipes")}
+              >
+                My Recipes
+              </button>
+              <button
+                className={`nav-link ${location.pathname === "/mybot" ? "active" : ""}`}
+                onClick={() => navigate("/mybot")}
+              >
+                MySousChef
+              </button>
+              <button className="nav-profile" onClick={onLogout}>
                 <PiChefHatFill /> Logout
-            </button>
-          </>
-
+              </button>
         </div>
       </nav>
 

@@ -18,7 +18,7 @@ function InputPage({ onLogout }) {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/generate-recipe", {
+      const response = await fetch("https://what-s-in-my-fridge.onrender.com/generate-recipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,6 +62,12 @@ function InputPage({ onLogout }) {
             onClick={() => navigate("/myrecipes")}
           >
             My Recipes
+          </button>
+          <button
+            className={`nav-link ${location.pathname === "/mybot" ? "active" : ""}`}
+            onClick={() => navigate("/mybot")}
+          >
+            MySousChef
           </button>
           <button className="nav-profile" onClick={onLogout}>
             <PiChefHatFill /> Logout

@@ -87,6 +87,12 @@ function MyRecipesPage({onLogout }) {
               >
                 My Recipes
               </button>
+              <button
+                className={`nav-link ${location.pathname === "/mybot" ? "active" : ""}`}
+                onClick={() => navigate("/mybot")}
+              >
+                MySousChef
+              </button>
               <button className="nav-profile" onClick={onLogout}>
                 <PiChefHatFill /> Logout
               </button>
