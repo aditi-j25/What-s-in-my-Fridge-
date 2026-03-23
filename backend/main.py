@@ -164,6 +164,3 @@ def search_recipes_endpoint(keyword: str = Query(...)):
     except Exception as e:
         print(e)
         return {"recipes": []}    
-    
-if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
