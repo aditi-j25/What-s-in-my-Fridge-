@@ -5,6 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from recipie_generation import RecipeRequest,RecipeResponse,SaveRecipeRequest,generate_recipe
 from DbConnect import insert_user, get_user, get_recipes, get_ingredients, save_recipe_to_db, search_recipes_by_name
 from typing import Optional, List, Dict
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
 class UserRequest(BaseModel):
     username: str
