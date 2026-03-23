@@ -4,12 +4,20 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from recipie_generation import RecipeRequest,RecipeResponse,generate_recipe
 from DbConnect import insert_user, get_user, get_recipes, get_ingredients
-from typing import Optional
+from typing import Optional, List, Dict
 
 class UserRequest(BaseModel):
     username: str
     password: str
     email: Optional[str] = None
+
+class ChatMessage(BaseModel):
+    role: str
+    content: str
+
+class ChatRequest(BaseModel):
+    message: str
+    conversationHistory: List[ChatMessage] = []
 
 app = FastAPI(title ="What's in my Fridge API")
 
@@ -17,6 +25,7 @@ app = FastAPI(title ="What's in my Fridge API")
 origins =[
     "http://localhost:3000",
     "http://localhost:5173",
+    "http://localhost:5174",
 ]
 
 app.add_middleware(
@@ -69,6 +78,59 @@ def get_user_recipes(user_id: int):
         return {"recipes": recipes}
     except Exception as e:
         return {"error": str(e)}
+
+@app.post("/chat")
+async def chat(request: dict):
+    """
+    MySousChef chatbot - uses SAME method as recipie_generation.py
+    """
+    try:
+        import google.generativeai as genai
+        import os
+        from dotenv import load_dotenv
+        
+        # Load API key 
+        load_dotenv()
+        API_KEY = os.getenv("GEMINI_API_KEY")
+        
+        # If no .env file, use hardcoded key
+        if not API_KEY:
+            raise ValueError("GEMINI_API_KEY not found in environment variables")
+        
+        # Configure 
+        genai.configure(api_key=API_KEY)
+        
+    
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        
+        # Build context
+        context = """You are MySousChef, a friendly cooking assistant. 
+Help with nutritional information, cooking tips, and ingredient uses.
+Be concise and helpful. Keep responses under 150 words.
+
+"""
+        
+        # Add conversation history
+        conversation_history = request.get("conversationHistory", [])
+        for msg in conversation_history[-5:]:
+            role = "User" if msg.get("role") == "user" else "MySousChef"
+            context += f"{role}: {msg.get('content', '')}\n"
+        
+        # Add current message
+        user_message = request.get("message", "")
+        context += f"User: {user_message}\nMySousChef: "
+        
+        # Generate response 
+        response = model.generate_content(context)
+        
+        # Return text 
+        return {"response": response.text}
+        
+    except Exception as e:
+        print(f"Chat error: {e}")
+        import traceback
+        traceback.print_exc()
+        return {"response": "Sorry, I'm having trouble right now. Please try again."}
 
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)
