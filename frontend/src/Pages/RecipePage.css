@@ -20,3 +20,10 @@
   background: var(--green-light);
   border-color: var(--green-mid);
 }
+
+.recipe-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  align-items: center;
+}
