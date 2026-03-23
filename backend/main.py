@@ -1,9 +1,9 @@
 import uvicorn
 from pydantic import BaseModel
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
-from recipie_generation import RecipeRequest,RecipeResponse,generate_recipe
-from DbConnect import insert_user, get_user, get_recipes, get_ingredients
+from recipie_generation import RecipeRequest,RecipeResponse,SaveRecipeRequest,generate_recipe
+from DbConnect import insert_user, get_user, get_recipes, get_ingredients, save_recipe_to_db, search_recipes_by_name
 from typing import Optional
 
 class UserRequest(BaseModel):
@@ -69,6 +69,38 @@ def get_user_recipes(user_id: int):
         return {"recipes": recipes}
     except Exception as e:
         return {"error": str(e)}
+    
+@app.post("/save-recipe")
+def save_recipe(request: SaveRecipeRequest):
+    try:
+        result = save_recipe_to_db(
+          user_id=request.user_id,
+          recipe=request.recipe
+        )
 
+        return result
+    except Exception as e:
+        return{"error": str(e)}
+    
+@app.get("/search-recipes")
+def search_recipes_endpoint(keyword: str = Query(...)):
+    try:
+        results = search_recipes_by_name(keyword)
+
+        if not results:
+            return {"recipes": []}
+
+        titles = [
+            r["recipe_name"][0]
+            for r in results
+            if r.get("recipe_name")
+        ]
+
+        return {"recipes": titles}
+
+    except Exception as e:
+        print(e)
+        return {"recipes": []}    
+    
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=8000)

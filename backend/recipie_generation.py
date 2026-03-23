@@ -18,7 +18,6 @@ class Step(BaseModel):
     step_number: int
     instruction: str
 
-
 class RecipeResponse(BaseModel):
     title: str
     prep_time: str
@@ -27,6 +26,10 @@ class RecipeResponse(BaseModel):
     ingredients: List[Ingredient]
     steps: List[Step]
 
+class SaveRecipeRequest(BaseModel):
+    user_id: int
+    recipe: dict
+    
 #---LLM initialisation---
 load_dotenv()    
 API_KEY = os.getenv("GEMINI_API_KEY")

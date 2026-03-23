@@ -23,24 +23,60 @@ def insert_user(username: str, password: str, email: str):
         print(f"Insert user error: {e}")
         return None
 
-def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, prep_time: str, cook_time: str, servings: str):
-    """Add a new generated recipe linked to a user."""
+# def insert_recipe(user_id: int, recipe_name: list, recipe_instructions: list, prep_time: str, cook_time: str, servings: str):
+#     """Add a new generated recipe linked to a user."""
+#     try:
+#       if search_recipes_by_name(recipe_name):
+#         return get_recipes(user_id=user_id)
+#       else:
+#         response = supabase.table("Generated_Recipes").insert({
+#             "user_id":              user_id,
+#             "recipe_name":         recipe_name,        # _text = array of text
+#             "recipe_instructions": recipe_instructions, # _text = array of text
+#             "prep_time" : prep_time, # text
+#             "cook_time" : cook_time, # text
+#             "servings" : servings # text
+#         }).execute()
+#         return response.data
+#     except Exception as e:
+#         print(f"Insert recipe error: {e}")
+#         return None
+
+def save_recipe_to_db(user_id, recipe):
+    #recipe details
     try:
-      if search_recipes_by_name(recipe_name):
-        return get_recipes(user_id=user_id)
-      else:
-        response = supabase.table("Generated_Recipes").insert({
-            "user_id":              user_id,
-            "recipe_name":         recipe_name,        # _text = array of text
-            "recipe_instructions": recipe_instructions, # _text = array of text
-            "prep_time" : prep_time, # text
-            "cook_time" : cook_time, # text
-            "servings" : servings # text
+        recipe_res = supabase.table("Generated_Recipes").insert({
+            "user_id": user_id,
+            "recipe_name": [recipe["title"]],
+            "recipe_instructions": [step["instruction"] for step in recipe["steps"]],
+            "prep_time": recipe["prep_time"],
+            "cook_time": recipe["cook_time"],
+            "servings": str(recipe["servings"])
         }).execute()
-        return response.data
+
+        recipe_id = recipe_res.data[0]["recipe_id"]
+        
+        # put measurement and ingredient into arrays
+        ingredient_names = []
+        measurements = []
+
+        for ing in recipe["ingredients"]:
+            ingredient_names.append(ing["name"])
+            measurements.append(ing["measurement"])
+
+        supabase.table("Ingredients_List").insert({
+            "user_id": user_id,
+            "recipe_id": recipe_id,
+            "ingredient_name": ingredient_names,
+            "measurement": measurements
+        }).execute()
+
+        return {"message": "Recipe saved"}
+
     except Exception as e:
-        print(f"Insert recipe error: {e}")
+        print(e)
         return None
+    
 
 def insert_ingredients(user_id: int, recipe_id: int, ingredient_name: list):
     """Add ingredients linked to a user and recipe."""
