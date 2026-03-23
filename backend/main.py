@@ -86,9 +86,6 @@ async def chat(request: dict):
     MySousChef chatbot - uses SAME method as recipie_generation.py
     """
     try:
-        import google.generativeai as genai
-        import os
-        from dotenv import load_dotenv
         
         # Load API key 
         load_dotenv()
