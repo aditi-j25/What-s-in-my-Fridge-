@@ -20,7 +20,7 @@ function HomePage({ isLoggedIn, onLogout }) {
     {
       icon: <GiForkKnifeSpoon />,
       title: "My Recipes",
-      desc: "View and edit your saved recipes along with nutritional information.",
+      desc: "View all the recipes you have generated!",
       path: isLoggedIn ? "/myrecipes" : "/login",
       colorClass: "card-recipes",
     },
@@ -87,7 +87,7 @@ function HomePage({ isLoggedIn, onLogout }) {
               className="hero-btn"
               onClick={() => navigate("/login")}
             >
-              Login to Get Started
+              Login to Get Started!
             </button>
           </div>
 
