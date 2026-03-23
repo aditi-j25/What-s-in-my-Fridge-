@@ -26,7 +26,7 @@ origins =[
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://what-s-in-my-fridge.onrender.com",
+    "https://what-s-in-my-fridge-gop.7.onrender.com",
 ]
 
 app.add_middleware(
