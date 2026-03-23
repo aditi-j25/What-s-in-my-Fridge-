@@ -78,18 +78,14 @@ function App() {
             
           }
         />
-        <Route 
-          path="/mybot" 
+        <Route
+          path="/mybot"
           element={
-            <ProtectedRoute>
-              <MyBotPage 
-                currentUser={currentUser}
-                setIsLoggedIn={setIsLoggedIn}
-                setCurrentUser={setCurrentUser}
-              />
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <MyBotPage onLogout={handleLogout} />
             </ProtectedRoute>
           }
-          />
+        />
       </Routes>
     </BrowserRouter>
   );
