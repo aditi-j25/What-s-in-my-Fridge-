@@ -26,7 +26,7 @@ origins =[
     "http://localhost:3000",
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://what-s-in-my-fridge-gop7.onrender.com",
+    "https://whats-in-my-fridge-gamma.vercel.app",
 ]
 
 app.add_middleware(
