@@ -20,7 +20,7 @@ export default function RecipePage({ onLogout }) {
 
       try {
         const res = await fetch(
-          `http://localhost:8000/search-recipes?keyword=${encodeURIComponent(recipe.title)}`
+          `https://what-s-in-my-fridge.onrender.com?keyword=${encodeURIComponent(recipe.title)}`
         );
         const data = await res.json();
 
@@ -44,7 +44,7 @@ export default function RecipePage({ onLogout }) {
     const userId = localStorage.getItem("user_id");
 
     try {
-      const response = await fetch("http://localhost:8000/save-recipe", {
+      const response = await fetch("https://what-s-in-my-fridge.onrender.com/save-recipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

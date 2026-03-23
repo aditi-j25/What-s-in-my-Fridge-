@@ -15,7 +15,7 @@ function LoginPage({ onLogin }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
-        const res = await fetch("http://localhost:8000/login", {
+        const res = await fetch("https://what-s-in-my-fridge.onrender.com/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
