@@ -21,7 +21,7 @@ function MyRecipesPage({onLogout }) {
       return;
     }
 
-    fetch(`https://what-s-in-my-fridge.onrender.com/${userId}`)
+    fetch(`https://what-s-in-my-fridge-gop7.onrender.com/myrecipes/${userId}`)
       .then(response => response.json())
       .then(data => {
         if (data.error) {

@@ -18,7 +18,7 @@ function InputPage({ onLogout }) {
     setLoading(true);
 
     try {
-      const response = await fetch("https://what-s-in-my-fridge.onrender.com/generate-recipe", {
+      const response = await fetch("https://what-s-in-my-fridge-gop7.onrender.com/generate-recipe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

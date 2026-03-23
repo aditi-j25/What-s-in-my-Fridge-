@@ -23,7 +23,7 @@ function SignupPage() {
             setError("**Passwords do not match**");
             return;
         }
-        const res = await fetch("http://localhost:8000/signup", {
+        const res = await fetch("https://what-s-in-my-fridge-gop7.onrender.com/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -72,7 +72,7 @@ function MyBotPage({onLogout}) {
 
     try {
       // Call your backend API that connects to Google Gemini
-      const response = await fetch('https://what-s-in-my-fridge.onrender.com/chat', {
+      const response = await fetch('https://what-s-in-my-fridge-gop7.onrender.com/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
